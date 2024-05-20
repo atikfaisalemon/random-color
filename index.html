@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random-Color</title>
+  </head>
+  <body>
+    <h1>
+      If any one press START will keep changing the backgroud color every
+      secound
+    </h1>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+  </body>
+  <script>
+    // document.body.style.backgroundColor = getRandomColor();
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    let intervalId;
+    const startRandomColor = function () {
+      if (!intervalId) {
+        intervalId = setInterval(changeBgColor, 1000);
+      }
+      function changeBgColor() {
+        document.body.style.backgroundColor = getRandomColor();
+      }
+    };
+    const stopRandomColor = function () {
+      clearInterval(intervalId);
+    };
+
+    document
+      .getElementById("start")
+      .addEventListener("click", startRandomColor);
+    document.getElementById("stop").addEventListener("click", stopRandomColor);
+  </script>
+</html>
